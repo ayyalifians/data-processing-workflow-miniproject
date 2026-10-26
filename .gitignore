@@ -1,0 +1,20 @@
+# Python
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+
+# Secrets and environment variables
+.env
+.env.*
+!.env.example
+
+# Generated dbt files
+warehouse_dbt/target/
+warehouse_dbt/logs/
+
+# Editor and OS files
+.vscode/
+.DS_Store
+Thumbs.db

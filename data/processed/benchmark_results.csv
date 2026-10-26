@@ -1,0 +1,4 @@
+method,execution_time_seconds,rows
+Pandas,0.01743720000013127,30
+Polars Eager,0.0044117999968875665,30
+Polars Lazy,0.016560500000196043,30

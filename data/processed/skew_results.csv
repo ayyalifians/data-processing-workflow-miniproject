@@ -1,0 +1,3 @@
+method,rows,groups,execution_time_seconds
+Pandas groupby,30000,26,0.017487299999629613
+Polars group_by,30000,26,0.006038199997419724

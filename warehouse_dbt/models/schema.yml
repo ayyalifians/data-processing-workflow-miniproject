@@ -1,0 +1,63 @@
+﻿version: 2
+
+models:
+  - name: stg_orders
+    description: "View staging untuk menyeragamkan skema data transaksi."
+    columns:
+      - name: order_id
+        description: "ID unik transaksi."
+        data_tests:
+          - not_null
+          - unique
+      - name: customer_id
+        data_tests:
+          - not_null
+      - name: order_ts
+        data_tests:
+          - not_null
+
+  - name: fct_orders
+    description: "Tabel fakta transaksi dan nilai penjualan."
+    columns:
+      - name: order_id
+        data_tests:
+          - not_null
+          - unique
+      - name: customer_id
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('dim_customer')
+                field: customer_id
+      - name: product_category
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('dim_product_category')
+                field: product_category
+
+  - name: dim_customer
+    description: "Dimensi pelanggan dengan satu baris per customer."
+    columns:
+      - name: customer_id
+        data_tests:
+          - not_null
+          - unique
+
+  - name: dim_product_category
+    description: "Dimensi kategori produk dengan satu baris per kategori."
+    columns:
+      - name: product_category
+        data_tests:
+          - not_null
+          - unique
+
+  - name: agg_daily_sales
+    description: "Agregasi metrik penjualan berdasarkan tanggal."
+    columns:
+      - name: order_date
+        data_tests:
+          - not_null
+          - unique
